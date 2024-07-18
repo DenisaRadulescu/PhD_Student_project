@@ -1,18 +1,9 @@
 import json
 
 import psycopg2 as ps
-
+import connect_to_db as db
 
 # Read Config
-def read_config(path: str = "config.json") -> dict:
-    try:
-        config = {}
-        with open(path, "r") as f:
-            config = json.loads(f.read())
-        return config
-    except Exception as e:
-        print(f"Eroare la citire config. {e}")
-        return config
 
 
 # Fetch all professor from the specified table
@@ -58,7 +49,7 @@ def add_professor_to_db(config: dict, title: str, name: str, university_id: int,
 
 
 if __name__ == '__main__':
-    config = read_config()
+    config = db.read_config()
     # proffs = select_universities_from_db(config)
     # print(proffs)
     # new_professor_id = add_professor_to_db(config, title="Dr.", name="Alice Johnson",

@@ -1,16 +1,7 @@
 import json
 import psycopg2 as ps
+import connect_to_db as db
 
-
-def read_config(path: str = "config.json") -> dict:
-    try:
-        config = {}
-        with open(path, "r") as f:
-            config = json.loads(f.read())
-        return config
-    except Exception as e:
-        print(f"Eroare la citire config. {e}")
-        return config
 
 
 # Fetch all students from the specified table
@@ -116,7 +107,7 @@ def add_article_to_db(config: dict, article_title: str, database: str, impact_fa
         return None
 
 if __name__ == '__main__':
-    config = read_config()
+    config = db.read_config()
     # students = select_all_students(config)
     # print(show_all_students(students))
     # new_student_id = add_student_to_db(config, name="Bob Brown", funding_type="buget", scholarship="yes", university_id=5)
