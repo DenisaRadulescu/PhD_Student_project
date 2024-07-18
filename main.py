@@ -1,16 +1,17 @@
-# aplicatia va avea
-# -scolile doctorale
-# -studentii (care, unde sunt inscrisi)
-# -conducatorul, coordonatorii de proiect,
-# -daca au intrat sau nu la bursa/taxa.
 
-
-#  In acest meniu sa se poate updata lista de studenti
-#  (care au renuntat si care  nu, daca au prelungit sau nu )
-# si daca au indeplinit targetul produs de ministerul educatiei
 
 menu = """
-    1. Update lista de studenti
-    2.
-
+    1. Show universities database.
+    2. Add university.
+    3. Show universities database.
+    4. Add professors.
+    5. Show universities database.
+    6. Add student.
+    7. Update student profile.
+    8. Add article within database.
+    9. Check if PhD Student meets graduation requirements.
+    10. Exit.
 """
+
+if __name__ == '__main__':
+    pass
