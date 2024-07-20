@@ -1,0 +1,15 @@
+{
+    "isi_database": [
+        "Web of Science",
+        "PubMed",
+        "IEEE Xplore",
+        "JSTOR",
+        "ScienceDirect",
+        "Scopus",
+        "SpringerLink",
+        "Wiley Online Library",
+        "Nature",
+        "ACM Digital Library",
+        "EBSCOhost"
+    ]
+}

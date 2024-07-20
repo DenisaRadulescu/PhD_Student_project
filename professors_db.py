@@ -3,10 +3,10 @@ import json
 import psycopg2 as ps
 import connect_to_db as db
 
-# Read Config
+
+""" Fetch all professor from the specified table """
 
 
-# Fetch all professor from the specified table
 def select_professors_from_db(config: dict, table: str = "phd_students.professors") -> list:
     try:
         with ps.connect(**config) as conn:
@@ -25,14 +25,18 @@ def select_professors_from_db(config: dict, table: str = "phd_students.professor
         return []
 
 
-# Show all professors
+""" Show all professors """
+
+
 def show_all_professors(professors_list: list):
     # Print all universities
     for item in professors_list:
         print(f"{item.get('professor_id')}. {item.get('title')} {item.get('name')}")
 
 
-# Add a new professor
+""" Add a new professor """
+
+
 def add_professor_to_db(config: dict, title: str, name: str, university_id: int, table: str = "phd_students.professors") -> bool:
     try:
         with ps.connect(**config) as conn:
@@ -45,7 +49,6 @@ def add_professor_to_db(config: dict, title: str, name: str, university_id: int,
     except Exception as e:
         print(f"Error on adding a professor into the database: {e}")
         return None
-
 
 
 if __name__ == '__main__':

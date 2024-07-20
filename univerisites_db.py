@@ -3,10 +3,11 @@ import json
 import psycopg2 as ps
 import connect_to_db as db
 
-# Read Config
 
 
-# Fetch all universities from the specified table
+""" Fetch all universities from the specified table """
+
+
 def select_universities_from_db(config: dict, table: str = "phd_students.universities") -> list:
     try:
         with ps.connect(**config) as conn:
@@ -25,14 +26,18 @@ def select_universities_from_db(config: dict, table: str = "phd_students.univers
         return []
 
 
-# Show all universities
+""" Show all universities """
+
+
 def show_all_universities(universities_list: list):
     # Print all universities
     for item in universities_list:
         print(f"{item.get('university_id')}. {item.get('faculty_name')}")
 
 
-# Add new university
+""" Add new university """
+
+
 def add_university_to_db(config: dict, faculty_name: str, table: str = "phd_students.universities") -> bool:
     try:
         with ps.connect(**config) as conn:
