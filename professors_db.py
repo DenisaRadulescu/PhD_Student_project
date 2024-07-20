@@ -1,21 +1,12 @@
 import json
 
 import psycopg2 as ps
+import connect_to_db as db
 
 
-# Read Config
-def read_config(path: str = "config.json") -> dict:
-    try:
-        config = {}
-        with open(path, "r") as f:
-            config = json.loads(f.read())
-        return config
-    except Exception as e:
-        print(f"Eroare la citire config. {e}")
-        return config
+""" Fetch all professor from the specified table """
 
 
-# Fetch all professor from the specified table
 def select_professors_from_db(config: dict, table: str = "phd_students.professors") -> list:
     try:
         with ps.connect(**config) as conn:
@@ -34,14 +25,18 @@ def select_professors_from_db(config: dict, table: str = "phd_students.professor
         return []
 
 
-# Show all professors
+""" Show all professors """
+
+
 def show_all_professors(professors_list: list):
     # Print all universities
     for item in professors_list:
         print(f"{item.get('professor_id')}. {item.get('title')} {item.get('name')}")
 
 
-# Add a new professor
+""" Add a new professor """
+
+
 def add_professor_to_db(config: dict, title: str, name: str, university_id: int, table: str = "phd_students.professors") -> bool:
     try:
         with ps.connect(**config) as conn:
@@ -56,9 +51,8 @@ def add_professor_to_db(config: dict, title: str, name: str, university_id: int,
         return None
 
 
-
 if __name__ == '__main__':
-    config = read_config()
+    config = db.read_config()
     # proffs = select_universities_from_db(config)
     # print(proffs)
     # new_professor_id = add_professor_to_db(config, title="Dr.", name="Alice Johnson",

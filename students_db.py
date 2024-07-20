@@ -1,19 +1,12 @@
 import json
 import psycopg2 as ps
+import connect_to_db as db
 
 
-def read_config(path: str = "config.json") -> dict:
-    try:
-        config = {}
-        with open(path, "r") as f:
-            config = json.loads(f.read())
-        return config
-    except Exception as e:
-        print(f"Eroare la citire config. {e}")
-        return config
+
+"""Fetch all students from the specified table"""
 
 
-# Fetch all students from the specified table
 def select_all_students(config: dict, table: str = "phd_students.students") -> list:
     try:
         with ps.connect(**config) as conn:
@@ -32,13 +25,31 @@ def select_all_students(config: dict, table: str = "phd_students.students") -> l
         return []
 
 
-# Print all students
+""" Print all students """
+
+
 def show_all_students(students_list: list):
     for item in students_list:
         print(f"{item.get('student_id')}. {item.get('name')}")
 
 
-# Add a new student
+"""Check if student id already exists or not"""
+
+
+def student_id_exists(config: dict, student_id: int) -> bool:
+    try:
+        with ps.connect(**config) as conn:
+            with conn.cursor() as cursor:
+                cursor.execute("SELECT 1 FROM phd_students.students WHERE student_id = %s", (student_id,))
+                return cursor.fetchone() is not None
+    except Exception as e:
+        print(f"Eroare la verificarea ID-ului studentului: {e}")
+        return False
+
+
+""" Add a new student """
+
+
 def add_student_to_db(config: dict, name: str, funding_type: str, scholarship: str, university_id: int,
                       table: str = "phd_students.students", ) -> bool:
     try:
@@ -77,6 +88,7 @@ def select_articles_from_db(config: dict, table: str = "phd_students.articles") 
 
 """ Show all articles within the list"""
 
+
 def print_articles(articles: list):
     if not articles:
         print("No articles found.")
@@ -88,35 +100,37 @@ def print_articles(articles: list):
             print(f"  {key}: {value}")
         print()
 
+""" Add new articles within databse """
+
 
 def add_article_to_db(config: dict, article_title: str, database: str, impact_factor: float,
-                      student_id: int, student_first_author: str, student_corresponding_author: str,
-                      coordinator_id: int, coordinator_first_author: str, coordinator_corresponding_author: str,
-                      table: str = "phd_students.articles", ) -> bool:
+                      student_id: int, student_first_author: str, coordinator_id: int,
+                      coordinator_first_author: str, coordinator_co_author: str,
+                      is_leader_coordinator: str, is_team_coordinator: str,
+                      table: str = "phd_students.articles") -> bool:
     try:
         with ps.connect(**config) as conn:
             with conn.cursor() as cursor:
                 sql_query = f"""
                     INSERT INTO {table} (
                         article_title, database, impact_factor, student_id, student_first_author,
-                        student_corresponding_author, coordinator_id, coordinator_first_author,
-                        coordinator_corresponding_author
-                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);
+                        coordinator_id, coordinator_first_author, coordinator_co_author,
+                        is_leader_coordinator, is_team_coordinator
+                    ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
                 """
                 cursor.execute(sql_query, (
                     article_title, database, impact_factor, student_id, student_first_author,
-                    student_corresponding_author, coordinator_id, coordinator_first_author,
-                    coordinator_corresponding_author
-                ))
+                    coordinator_id, coordinator_first_author, coordinator_co_author,
+                    is_leader_coordinator, is_team_coordinator))
                 conn.commit()
-        print("Article added successfully within database!")
+        print("Article added successfully to the database!")
         return True
     except Exception as e:
         print(f"Error on inserting into the database: {e}")
-        return None
+        return False
 
 if __name__ == '__main__':
-    config = read_config()
+    config = db.read_config()
     # students = select_all_students(config)
     # print(show_all_students(students))
     # new_student_id = add_student_to_db(config, name="Bob Brown", funding_type="buget", scholarship="yes", university_id=5)
@@ -125,10 +139,11 @@ if __name__ == '__main__':
     # # print(pub_articles)
     # print(print_articles(pub_articles))
 
-    new_article = add_article_to_db(config, article_title="AI Research", database="IEEE Xplore",
-                                                      impact_factor=7.2, student_id=2,
-                                                      student_first_author="yes", student_corresponding_author="no",
-                                                      coordinator_id=2, coordinator_first_author="yes",
-                                                      coordinator_corresponding_author="no")
-
+    # new_article = add_article_to_db(config, article_title="testetested", database="IEEE Xplore",
+    #                                 impact_factor=7.4, student_id=2, student_first_author="yes",
+    #                                 coordinator_id=2, coordinator_first_author="yes",
+    #                                 coordinator_co_author="yes", is_leader_coordinator="yes",
+    #                                 is_team_coordinator="yes")
+    id = student_id_exists(config,2)
+    print(id)
 

@@ -1,21 +1,13 @@
 import json
 
 import psycopg2 as ps
+import connect_to_db as db
 
 
-# Read Config
-def read_config(path: str = "config.json") -> dict:
-    try:
-        config = {}
-        with open(path, "r") as f:
-            config = json.loads(f.read())
-        return config
-    except Exception as e:
-        print(f"Eroare la citire config. {e}")
-        return config
+
+""" Fetch all universities from the specified table """
 
 
-# Fetch all universities from the specified table
 def select_universities_from_db(config: dict, table: str = "phd_students.universities") -> list:
     try:
         with ps.connect(**config) as conn:
@@ -34,14 +26,18 @@ def select_universities_from_db(config: dict, table: str = "phd_students.univers
         return []
 
 
-# Show all universities
+""" Show all universities """
+
+
 def show_all_universities(universities_list: list):
     # Print all universities
     for item in universities_list:
         print(f"{item.get('university_id')}. {item.get('faculty_name')}")
 
 
-# Add new university
+""" Add new university """
+
+
 def add_university_to_db(config: dict, faculty_name: str, table: str = "phd_students.universities") -> bool:
     try:
         with ps.connect(**config) as conn:
@@ -58,7 +54,7 @@ def add_university_to_db(config: dict, faculty_name: str, table: str = "phd_stud
 
 
 if __name__ == '__main__':
-    config = read_config()
+    config = db.read_config()
     # universities = select_universities_from_db(config)
     # show_all_universities(universities)
     new_university_id = add_university_to_db(config, faculty_name="Faculty of Computer Science")
