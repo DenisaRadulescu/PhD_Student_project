@@ -11,7 +11,15 @@ def select_all_students(config: dict, table: str = "phd_students.students") -> l
     try:
         with ps.connect(**config) as conn:
             with conn.cursor() as cursor:
-                sql_query = f"SELECT * FROM {table}"
+                # 1. Join the students table with the universities table
+                # in the database query to fetch the university name.
+                # 2.Display the university name (faculty_name)
+                # instead of the university ID in the students table on the webpage
+                sql_query = f"""
+                    SELECT s.*, u.faculty_name 
+                    FROM {table} s
+                    JOIN phd_students.universities u ON s.university_id = u.university_id
+                """
                 cursor.execute(sql_query)
                 students = cursor.fetchall()
                 columns = [desc[0] for desc in cursor.description]
@@ -25,10 +33,10 @@ def select_all_students(config: dict, table: str = "phd_students.students") -> l
         return []
 
 
-""" Print all students """
 
 
 def show_all_students(students_list: list):
+    """ Print all students """
     for item in students_list:
         print(f"{item.get('student_id')}. {item.get('name')}")
 

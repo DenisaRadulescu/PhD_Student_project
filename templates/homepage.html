@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='homepage_style.css') }}">
+</head>
+<body>
+    <div class="sidebar">
+    <h3>Menu</h3>
+    <a href="{{ url_for('show_universities') }}">Show Universities Database</a>
+    <a href="{{ url_for('add_university') }}">Add University</a>
+    <a href="{{ url_for('show_professors') }}">Show Professors Database</a>
+    <a href="{{ url_for('add_professor') }}">Add Professor</a>
+    <a href="{{ url_for('show_students') }}">Show Students Database</a>
+    <a href="{{ url_for('add_student') }}">Add Student</a>
+    <a href="{{ url_for('show_all_articles') }}">Show All Articles</a>
+    <a href="{{ url_for('add_article') }}">Add Article</a>
+    <a href="{{ url_for('check_graduation_requirements') }}">Check Graduation Requirements</a>
+    <a href="{{ url_for('index') }}">Exit</a>
+    </div>
+
+    <div class="content">
+    {{ content | safe }}
+</div>
+</body>
+</html>

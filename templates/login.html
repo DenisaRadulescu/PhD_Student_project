@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Register</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='login_style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Login / Register</h1>
+
+        <!-- Displaying messages -->
+        {% if message %}
+            <p class="message">{{ message }}</p>
+        {% endif %}
+
+        <!-- Form selection -->
+        {% if form_type == 'login' %}
+            <form method="post" action="{{ url_for('index', form_type='login') }}">
+                <h2>Login</h2>
+                <label for="username_login">Username:</label>
+                <input type="text" id="username_login" name="username" required><br>
+
+                <label for="password_login">Password:</label>
+                <input type="password" id="password_login" name="password" required><br>
+                <button type="submit" name="login">Login</button>
+                <a href="{{ url_for('index', form_type='register') }}">Need an account? Register here</a>
+            </form>
+        {% else %}
+            <form method="post" action="{{ url_for('index', form_type='register') }}">
+                <h2>Register</h2>
+                <label for="username_register">Username:</label>
+                <input type="text" id="username_register" name="username" required><br>
+
+                <label for="password_register">Password:</label>
+                <input type="password" id="password_register" name="password" required><br>
+
+                <label for="confirm_password">Confirm Password:</label>
+                <input type="password" id="confirm_password" name="confirm_password" required><br>
+
+                <button type="submit" name="register">Register</button>
+                <a href="{{ url_for('index', form_type='login') }}">Already have an account? Login here</a>
+            </form>
+        {% endif %}
+    </div>
+</body>
+</html>
