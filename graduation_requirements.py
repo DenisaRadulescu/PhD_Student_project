@@ -3,19 +3,16 @@ import connect_to_db as db
 import json
 import students_db as stud_db
 
-"""Read ISI databse for further usage"""
-
 
 def get_isi_resources(file_path: str) -> list:
+    """Read ISI databse for further usage"""
     with open(file_path, 'r') as file:
         data = json.load(file)
         return data['isi_database']
 
 
-""" Make graduation requirements """
-
-
 def check_graduation_requirements(config: dict, student_id: int, isi_resources: list) -> dict:
+    """ Make graduation requirements """
     result = {
         "isi_articles": False,
         "cumulative_impact_factor": False,
@@ -60,10 +57,8 @@ def check_graduation_requirements(config: dict, student_id: int, isi_resources: 
     return result
 
 
-"""Show if the student passed or not"""
-
-
 def print_graduation_status(student_id: int, requirements: dict):
+    """Show if the student passed or not"""
     print(f"Studentul cu ID-ul {student_id}:")
     if all(requirements.values()):
         print("A îndeplinit toate cerințele de absolvire.")
@@ -79,10 +74,8 @@ def print_graduation_status(student_id: int, requirements: dict):
             print("- Coordonatorul trebuie să fie co-autor la cel puțin un articol.")
 
 
-"""Add a function to let use pick a  valid ID"""
-
-
 def get_student_id(config: dict) -> int:
+    """Add a function to let use pick a  valid ID"""
     while True:
         try:
             student_id = int(input("Introduceți ID-ul studentului: "))
@@ -92,6 +85,7 @@ def get_student_id(config: dict) -> int:
                 print("ID-ul introdus nu există în baza de date. Vă rugăm să introduceți un ID valid.")
         except ValueError:
             print("Vă rugăm să introduceți un număr valid.")
+
 
 if __name__ == '__main__':
     config = db.read_config()
