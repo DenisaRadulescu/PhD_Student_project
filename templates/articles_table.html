@@ -1,6 +1,9 @@
-<!-- templates/articles_table.html -->
 <h2>All Articles</h2>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 {% if articles %}
+<div class="table-responsive">
     <table class="articles-table">
         <thead>
             <tr>
@@ -18,7 +21,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for article in articles %}
+            {% for article in articles %}
             <tr>
                 <td>{{ article.article_id }}</td>
                 <td>{{ article.article_title }}</td>
@@ -32,9 +35,10 @@
                 <td>{{ article.is_leader_coordinator }}</td>
                 <td>{{ article.is_team_coordinator }}</td>
             </tr>
-        {% endfor %}
+            {% endfor %}
         </tbody>
     </table>
+</div>
 {% else %}
-    <p>No articles found.</p>
+<p>No articles found.</p>
 {% endif %}

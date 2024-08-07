@@ -1,6 +1,9 @@
 <h2>Add University</h2>
+
 <form method="POST">
     <label for="faculty_name">Faculty Name:</label>
-    <input type="text" id="faculty_name" name="faculty_name">
+
+    <input type="text" id="faculty_name" name="faculty_name" pattern="^[A-Za-z\s]+$" required title="Please enter the faculty name. Must contain only letters and spaces.">
+
     <button type="submit">Add</button>
 </form>

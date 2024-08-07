@@ -1,6 +1,8 @@
 <h2>Students List</h2>
+
 {% if students %}
-    <table class="students-table">
+<div class="table-responsive">
+    <table class="articles-table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -11,7 +13,7 @@
             </tr>
         </thead>
         <tbody>
-        {% for student in students %}
+            {% for student in students %}
             <tr>
                 <td>{{ student.student_id }}</td>
                 <td>{{ student.name }}</td>
@@ -19,9 +21,10 @@
                 <td>{{ student.scholarship }}</td>
                 <td>{{ student.faculty_name }}</td>
             </tr>
-        {% endfor %}
+            {% endfor %}
         </tbody>
     </table>
+</div>
 {% else %}
-    <p>No students found.</p>
+<p>No students found.</p>
 {% endif %}

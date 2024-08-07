@@ -1,0 +1,177 @@
+/* homepage_style.css */
+
+/* Basic styles for the entire page */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Styles for the sidebar */
+.sidebar {
+    height: 100vh; /* Full height of the viewport */
+    width: 250px; /* Width of the sidebar */
+    position: fixed; /* Fixed position on the screen */
+    top: 0;
+    left: 0;
+    background-color: #f4f4f4;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+    overflow-y: auto; /* Allows vertical scrolling if content exceeds height */
+}
+
+/* Style for the sidebar title */
+.sidebar h3 {
+    margin-top: 0;
+}
+
+/* Styles for links in the sidebar */
+.sidebar a {
+    display: block;
+    padding: 10px;
+    color: #333;
+    text-decoration: none;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s; /* Transition for hover effect */
+}
+
+/* Hover effect for sidebar links */
+.sidebar a:hover {
+    background-color: #ddd;
+}
+
+/* Styles for the main content area */
+.content {
+    margin-left: 290px; /* Space for the sidebar */
+    padding: 20px;
+}
+
+/* Styles for lists in the content area */
+.content ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.content li {
+    margin-bottom: 5px;
+}
+
+/* Styles for responsive tables */
+.table-responsive {
+    overflow-x: auto; /* Allows horizontal scrolling on small screens */
+    -webkit-overflow-scrolling: touch; /* For smoother scrolling on touch devices */
+}
+
+/* Styles for article and student tables */
+.articles-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+}
+
+/* Styles for table cells */
+.articles-table th,
+.articles-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Styles for table header */
+.articles-table th {
+    background-color: #f8f8f8;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+    border-top: 1px solid #ddd;
+}
+
+/* Alternating styles for table rows */
+.articles-table tbody tr:nth-child(even) {
+    background-color: #f8f8f8;
+}
+
+/* Hover effect for table rows */
+.articles-table tbody tr:hover {
+    background-color: #f1f1f1;
+    transition: background-color 0.3s ease;
+}
+
+/* Borders for first and last column */
+.articles-table td:first-child,
+.articles-table th:first-child {
+    border-left: 1px solid #ddd;
+}
+
+.articles-table td:last-child,
+.articles-table th:last-child {
+    border-right: 1px solid #ddd;
+}
+
+/* Border for the last row */
+.articles-table tbody tr:last-child td {
+    border-bottom: 1px solid #ddd;
+}
+
+/* Responsive styles for smaller screens */
+@media screen and (max-width: 600px) {
+    /* Adjustments for sidebar on small screens */
+    .sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+    }
+
+    /* Remove margin for content on small screens */
+    .content {
+        margin-left: 0;
+    }
+
+    /* Reduce font size for tables on small screens */
+    .articles-table {
+        font-size: 12px;
+    }
+
+    /* Reduce padding for table cells on small screens */
+    .articles-table th,
+    .articles-table td {
+        padding: 8px 10px;
+    }
+}
+
+/* Styles for forms */
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Styles for input fields and select dropdowns */
+input[type="text"],
+input[type="password"],
+select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+/* Styles for buttons */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Hover effect for buttons */
+button:hover {
+    background-color: #45a049;
+}

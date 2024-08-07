@@ -1,34 +1,59 @@
 <h2>Add Article</h2>
-        <form method="POST">
-            <label for="article_title">Article Title:</label>
-            <input type="text" id="article_title" name="article_title">
-            <br><br>
-            <label for="database">Database:</label>
-            <input type="text" id="database" name="database">
-            <br><br>
-            <label for="impact_factor">Impact Factor:</label>
-            <input type="number" step="0.1" id="impact_factor" name="impact_factor">
-            <br><br>
-            <label for="student_id">Student ID:</label>
-            <input type="text" id="student_id" name="student_id">
-            <br><br>
-            <label for="student_first_author">Student First Author:</label>
-            <input type="text" id="student_first_author" name="student_first_author">
-            <br><br>
-            <label for="coordinator_id">Coordinator ID:</label>
-            <input type="text" id="coordinator_id" name="coordinator_id">
-            <br><br>
-            <label for="coordinator_first_author">Coordinator First Author:</label>
-            <input type="text" id="coordinator_first_author" name="coordinator_first_author">
-            <br><br>
-            <label for="coordinator_co_author">Coordinator Co-Author:</label>
-            <input type="text" id="coordinator_co_author" name="coordinator_co_author">
-            <br><br>
-            <label for="is_leader_coordinator">Is Leader Coordinator:</label>
-            <input type="text" id="is_leader_coordinator" name="is_leader_coordinator">
-            <br><br>
-            <label for="is_team_coordinator">Is Team Coordinator:</label>
-            <input type="text" id="is_team_coordinator" name="is_team_coordinator">
-            <br><br>
-            <button type="submit">Add</button>
-        </form>
+<form method="POST">
+    <label for="article_title">Article Title:</label>
+    <input type="text" id="article_title" name="article_title" required title="Title cannot be an empty field">
+    <br><br>
+
+    <label for="database">Database:</label>
+    <input type="text" id="database" name="database" required>
+    <br><br>
+
+    <label for="impact_factor">Impact Factor:</label>
+    <input type="number" step="0.1" id="impact_factor" name="impact_factor" required>
+    <br><br>
+
+    <label for="student_id">Student ID:</label>
+    <input type="text" id="student_id" name="student_id" required title="Can add only numbers (integers)">
+    <br><br>
+
+    <label for="student_first_author">Student First Author:</label>
+    <select id="student_first_author" name="student_first_author" required>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <br><br>
+
+    <label for="coordinator_id">Coordinator ID:</label>
+    <input type="text" id="coordinator_id" name="coordinator_id" required title="Can add only numbers (integers)">
+    <br><br>
+
+    <label for="coordinator_first_author">Coordinator First Author:</label>
+    <select id="coordinator_first_author" name="coordinator_first_author" required>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <br><br>
+
+    <label for="coordinator_co_author">Coordinator Co-Author:</label>
+    <select id="coordinator_co_author" name="coordinator_co_author" required>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <br><br>
+
+    <label for="is_leader_coordinator">Is Leader Coordinator:</label>
+    <select id="is_leader_coordinator" name="is_leader_coordinator" required>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <br><br>
+
+    <label for="is_team_coordinator">Is Team Coordinator:</label>
+    <select id="is_team_coordinator" name="is_team_coordinator" required>
+        <option value="yes">Yes</option>
+        <option value="no">No</option>
+    </select>
+    <br><br>
+
+    <button type="submit">Add</button>
+</form>

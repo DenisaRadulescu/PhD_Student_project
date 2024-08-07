@@ -1,13 +1,14 @@
 <h2>Add Professor</h2>
+
 <form method="POST">
     <label for="title">Title:</label>
-    <input type="text" id="title" name="title">
-    <br> <br>
+    <input type="text" id="title" name="title" pattern="^[A-Za-z\s\.]+$" required title="Use only letters, spaces, and dots.">
+
     <label for="name">Name:</label>
-    <input type="text" id="name" name="name">
-    <br> <br>
+    <input type="text" id="name" name="name" pattern="^[A-Za-z\s]+$" required title="Use only letters and spaces">
+
     <label for="university_id">University ID:</label>
-    <input type="text" id="university_id" name="university_id">
-    <br> <br>
+    <input type="text" id="university_id" name="university_id" pattern="^\d+$" required title="Use only integers (numbers)">
+
     <button type="submit">Add</button>
 </form>
